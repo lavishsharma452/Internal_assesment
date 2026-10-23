@@ -19,7 +19,7 @@
     {
       title: "Interactive Quiz Application",
       description: "A simple quiz app built to practice JavaScript.",
-      github: "https://lavishsharma452.github.io/Internal-assessment/Quiz/"
+      github: "https://lavishsharma452.github.io/internal_assessment/Quiz/"
     },
     {
       title: "Book Reading List Application",
