@@ -1,33 +1,32 @@
 /* Easy place to add, edit, or remove project cards later.
    Just change this list. The page will update automatically. */
-const projects = [
-  {
-    title: "Python Programs Collection",
-    description: "A collection of beginner Python programs I am practicing.",
-    github: "https://github.com/PLACEHOLDER/python-programs-collection"
-  },
-  {
-    title: "Messy Python Code Improvement",
-    description: "Practice work where messy Python code is cleaned and improved.",
-    github: "https://github.com/PLACEHOLDER/messy-python-code-improvement"
-  },
-  {
-    title: "Bug Fixing Using Cursor AI",
-    description: "A learning project about finding and fixing bugs with Cursor AI.",
-    github: "https://github.com/PLACEHOLDER/bug-fixing-using-cursor-ai"
-  },
-  {
-    title: "Interactive Quiz Application",
-    description: "A simple quiz app built to practice JavaScript and web pages.",
-    github: "https://github.com/PLACEHOLDER/interactive-quiz-application"
-  },
-  {
-    title: "Book Reading List Application",
-    description: "A small app for keeping a list of books to read.",
-    github: "https://github.com/PLACEHOLDER/book-reading-list-application"
-  }
-];
-
+   const projects = [
+    {
+      title: "Python Programs Collection",
+      description: "A collection of beginner Python programs.",
+      github: "https://github.com/lavishsharma452/internal_assesment/tree/main/Python%20program"
+    },
+    {
+      title: "Messy Python Code Improvement",
+      description: "Practice project for improving messy Python code.",
+      github: "https://github.com/lavishsharma452/internal_assesment/tree/main/messy-python"
+    },
+    {
+      title: "Bug Fixing Using Cursor AI",
+      description: "A learning project about finding and fixing Python bugs.",
+      github: "https://github.com/lavishsharma452/internal_assesment/tree/main/bug-fixing"
+    },
+    {
+      title: "Interactive Quiz Application",
+      description: "A simple quiz app built to practice JavaScript.",
+      github: "https://github.com/lavishsharma452/internal_assesment/tree/main/Quiz"
+    },
+    {
+      title: "Book Reading List Application",
+      description: "A small app for keeping a list of books.",
+      github: "https://github.com/lavishsharma452/internal_assesment/tree/main/book-reading-list"
+    }
+  ];
 const projectGrid = document.getElementById("projectGrid");
 const projectSearch = document.getElementById("projectSearch");
 const emptyMsg = document.getElementById("emptyMsg");
