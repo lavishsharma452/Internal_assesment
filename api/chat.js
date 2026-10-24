@@ -18,17 +18,9 @@ export default async function handler(req, res) {
         },
         body: JSON.stringify({
           model: "gpt-5-mini",
-          input: [
-            {
-              role: "system",
-              content:
-                "You are the AI assistant for Lavish Sharma's portfolio. Answer questions about his skills, projects, education, and experience. Be concise, friendly, and professional. If information is not available, say you don't have that information."
-            },
-            {
-              role: "user",
-              content: message
-            }
-          ]
+          instructions:
+            "You are the AI assistant for Lavish Sharma's portfolio. Answer questions about his skills, projects, education and portfolio in a helpful and concise way.",
+          input: message
         })
       });
   
@@ -36,12 +28,12 @@ export default async function handler(req, res) {
   
       if (!response.ok) {
         return res.status(response.status).json({
-          error: data.error?.message || "OpenAI API request failed"
+          error: data.error?.message || "OpenAI API error"
         });
       }
   
       return res.status(200).json({
-        reply: data.output_text || "Sorry, I couldn't generate a response."
+        reply: data.output_text
       });
   
     } catch (error) {
