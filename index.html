@@ -125,35 +125,43 @@
       </div>
     </section>
   </main>
+</main>
 
-  <footer class="footer">
+<section id="portfolio-chatbot" class="chatbot-section">
+    <h2>Ask My Portfolio Chatbot</h2>
+    <p>Ask a question and get a response from the AI.</p>
+
+    <div id="chatMessages" class="chat-messages" aria-live="polite">
+        <p class="bot-message">
+            Hello! Ask me something about this portfolio.
+        </p>
+    </div>
+
+    <form id="chatForm" class="chat-form">
+        <input
+            id="chatInput"
+            type="text"
+            placeholder="Type your question"
+            required
+        >
+        <button id="chatSend" type="submit">Send</button>
+    </form>
+
+    <p id="chatStatus" aria-live="polite"></p>
+</section>
+
+<footer class="footer">
+    ...
+</footer>
     <div class="container">
       <p>Lavish Sharma | B.Tech Artificial Intelligence and Data Science</p>
     </div>
   </footer>
-  <!-- AI CHATBOT -->
-<section id="chatbot" class="chatbot-section">
-  <h2>AI Assistant</h2>
-  <p>Ask me about my skills, projects, or portfolio.</p>
-
-  <div id="chatMessages" class="chat-messages">
-      <div class="bot-message">
-          Hello! I'm Lavish's AI Assistant. How can I help you?
-      </div>
-  </div>
-
-  <div class="chat-input-area">
-      <input
-          type="text"
-          id="chatInput"
-          placeholder="Type your message..."
-      >
-
-      <button id="sendChat">Send</button>
-  </div>
-</section>
+ 
 
 <script src="script.js"></script>
+<script src="config.js"></script>
+<script src="chatbot.js"></script>
 </body>
 </html>
 

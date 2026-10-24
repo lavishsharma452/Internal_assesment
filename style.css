@@ -53,7 +53,7 @@ body,
 .search-box,
 .btn,
 .theme-btn,
-.menu-btn {
+body, .navbar, .section, .footer, .project-card, .skill-list li, .search-box, .btn, .theme-btn, .menu-btn {
   transition: background-color 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
 }
 

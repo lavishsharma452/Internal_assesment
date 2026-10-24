@@ -1,165 +1,124 @@
-/* Easy place to add, edit, or remove project cards later.
-   Just change this list. The page will update automatically. */
-   const projects = [
-    {
-      title: "Python Programs Collection",
-      description: "A collection of beginner Python programs.",
-      github: "https://github.com/lavishsharma452/internal_assesment/tree/main/Python%20program"
-    },
-    {
-      title: "Messy Python Code Improvement",
-      description: "Practice project for improving messy Python code.",
-      github: "https://github.com/lavishsharma452/internal_assesment/tree/main/messy-python"
-    },
-    {
-      title: "Bug Fixing Using Cursor AI",
-      description: "A learning project about finding and fixing Python bugs.",
-      github: "https://github.com/lavishsharma452/internal_assesment/tree/main/bug-fixing"
-    },
-    {
-      title: "Interactive Quiz Application",
-      description: "A simple quiz app built to practice JavaScript.",
-      github: "https://lavishsharma452.github.io/internal_assesment/Quiz/"
-    },
-    {
-      title: "Book Reading List Application",
-      description: "A small app for keeping a list of books.",
-      github: "https://github.com/lavishsharma452/internal_assesment/tree/main/book-reading-list"
-    }
-  ];
-const projectGrid = document.getElementById("projectGrid");
-const projectSearch = document.getElementById("projectSearch");
-const emptyMsg = document.getElementById("emptyMsg");
-const themeBtn = document.getElementById("themeBtn");
-const menuBtn = document.getElementById("menuBtn");
-const navLinks = document.getElementById("navLinks");
+// ===============================
+// AI PORTFOLIO CHATBOT
+// ===============================
 
-function createProjectCard(project) {
-  const card = document.createElement("article");
-  card.className = "project-card";
-  card.dataset.title = project.title.toLowerCase();
-  card.dataset.description = project.description.toLowerCase();
+function getBotResponse(message) {
+  const text = message.toLowerCase().trim();
 
-  card.innerHTML = `
-    <span class="placeholder">GitHub link: PLACEHOLDER</span>
-    <h3>${project.title}</h3>
-    <p>${project.description}</p>
-    <a href="${project.github}" target="_blank" rel="noopener noreferrer">
-      Open GitHub (PLACEHOLDER)
-    </a>
-  `;
+  // Greeting
+  if (
+      text.includes("hello") ||
+      text.includes("hi") ||
+      text.includes("hey")
+  ) {
+      return "Hello! I'm Lavish's portfolio assistant. You can ask me about his skills, projects, education, Python, AI, or portfolio.";
+  }
 
-  return card;
+  // Skills
+  if (
+      text.includes("skill") ||
+      text.includes("skills") ||
+      text.includes("technology") ||
+      text.includes("technologies")
+  ) {
+      return "Lavish is developing skills in Python, JavaScript, Machine Learning, Data Analysis, Artificial Intelligence, and core programming concepts.";
+  }
+
+  // Projects
+  if (
+      text.includes("project") ||
+      text.includes("projects")
+  ) {
+      return "Lavish has worked on projects including an Interactive Quiz Application, Book Reading List Application, Python practice projects, and bug-fixing projects.";
+  }
+
+  // Education
+  if (
+      text.includes("education") ||
+      text.includes("college") ||
+      text.includes("degree")
+  ) {
+      return "Lavish is pursuing a B.Tech in Artificial Intelligence and Data Science.";
+  }
+
+  // Python
+  if (
+      text.includes("python")
+  ) {
+      return "Lavish uses Python for programming practice, data analysis, and learning Artificial Intelligence and Machine Learning concepts.";
+  }
+
+  // AI
+  if (
+      text.includes("ai") ||
+      text.includes("artificial intelligence") ||
+      text.includes("machine learning")
+  ) {
+      return "Lavish is interested in Artificial Intelligence and Machine Learning, especially using technology and data to solve real-world problems.";
+  }
+
+  // Portfolio
+  if (
+      text.includes("portfolio") ||
+      text.includes("about you") ||
+      text.includes("about lavish")
+  ) {
+      return "This is Lavish Sharma's personal portfolio, showcasing his education, skills, projects, and interests in Artificial Intelligence and Data Science.";
+  }
+
+  // Contact
+  if (
+      text.includes("contact") ||
+      text.includes("email") ||
+      text.includes("reach")
+  ) {
+      return "You can use the Contact section of the portfolio to connect with Lavish.";
+  }
+
+  // Default answer
+  return "I can help you with information about Lavish's skills, projects, education, Python experience, AI interests, and portfolio. Try asking about his projects or skills.";
 }
 
-function showProjects(list) {
-  projectGrid.innerHTML = "";
-  emptyMsg.hidden = true;
 
-  list.forEach(function (project) {
-    projectGrid.appendChild(createProjectCard(project));
-  });
-}
-
-function searchProjects() {
-  const text = projectSearch.value.toLowerCase().trim();
-  const cards = projectGrid.querySelectorAll(".project-card");
-  let matchCount = 0;
-
-  cards.forEach(function (card) {
-    const title = card.dataset.title;
-    const description = card.dataset.description;
-    const isMatch = title.includes(text) || description.includes(text);
-
-    card.hidden = !isMatch;
-    if (isMatch) {
-      matchCount = matchCount + 1;
-    }
-  });
-
-  emptyMsg.hidden = matchCount !== 0;
-}
-
-function setTheme(isDark) {
-  document.documentElement.classList.toggle("dark", isDark);
-  themeBtn.textContent = isDark ? "Light Mode" : "Dark Mode";
-  themeBtn.setAttribute("aria-pressed", isDark ? "true" : "false");
-  localStorage.setItem("theme", isDark ? "dark" : "light");
-}
-
-/* Start with saved theme, or light mode */
-const savedTheme = localStorage.getItem("theme");
-setTheme(savedTheme === "dark");
-
-themeBtn.addEventListener("click", function () {
-  const isDark = !document.documentElement.classList.contains("dark");
-  setTheme(isDark);
-});
-
-showProjects(projects);
-
-projectSearch.addEventListener("input", searchProjects);
-
-menuBtn.addEventListener("click", function () {
-  navLinks.classList.toggle("open");
-});
-
-navLinks.querySelectorAll("a").forEach(function (link) {
-  link.addEventListener("click", function () {
-    navLinks.classList.remove("open");
-  });
-});
-// AI CHATBOT
-
-const chatInput = document.getElementById("chatInput");
-const sendChat = document.getElementById("sendChat");
-const chatMessages = document.getElementById("chatMessages");
+// ===============================
+// SEND MESSAGE
+// ===============================
 
 async function sendMessage() {
-    const message = chatInput.value.trim();
+  const message = chatInput.value.trim();
 
-    if (!message) return;
+  if (!message) return;
 
-    // Show user message
-    chatMessages.innerHTML += `
-        <div class="user-message">${message}</div>
-    `;
+  // Show user's message
+  chatMessages.innerHTML += `
+      <div class="user-message">${message}</div>
+  `;
 
-    chatInput.value = "";
+  // Clear input
+  chatInput.value = "";
 
-    // Show temporary response
-    const loading = document.createElement("div");
-    loading.className = "bot-message";
-    loading.textContent = "Thinking...";
-    chatMessages.appendChild(loading);
+  // Show temporary response
+  const loading = document.createElement("div");
+  loading.className = "bot-message";
+  loading.textContent = "Thinking...";
+  chatMessages.appendChild(loading);
 
-    try {
-        const response = await fetch("/api/chat", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                message: message
-            })
-        });
+  // Small delay to make chatbot feel natural
+  setTimeout(() => {
+      const reply = getBotResponse(message);
 
-        const data = await response.json();
+      // Remove "Thinking..."
+      loading.remove();
 
-        loading.textContent = data.reply || "Sorry, I couldn't answer.";
+      // Show bot response
+      const botMessage = document.createElement("div");
+      botMessage.className = "bot-message";
+      botMessage.textContent = reply;
 
-    } catch (error) {
-        console.error(error);
-        loading.textContent = "Chatbot is currently unavailable.";
-    }
+      chatMessages.appendChild(botMessage);
 
-    chatMessages.scrollTop = chatMessages.scrollHeight;
+      // Scroll to latest message
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+
+  }, 500);
 }
-
-sendChat.addEventListener("click", sendMessage);
-
-chatInput.addEventListener("keydown", function(event) {
-    if (event.key === "Enter") {
-        sendMessage();
-    }
-});
