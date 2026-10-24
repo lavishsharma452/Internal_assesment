@@ -109,3 +109,57 @@ navLinks.querySelectorAll("a").forEach(function (link) {
     navLinks.classList.remove("open");
   });
 });
+// AI CHATBOT
+
+const chatInput = document.getElementById("chatInput");
+const sendChat = document.getElementById("sendChat");
+const chatMessages = document.getElementById("chatMessages");
+
+async function sendMessage() {
+    const message = chatInput.value.trim();
+
+    if (!message) return;
+
+    // Show user message
+    chatMessages.innerHTML += `
+        <div class="user-message">${message}</div>
+    `;
+
+    chatInput.value = "";
+
+    // Show temporary response
+    const loading = document.createElement("div");
+    loading.className = "bot-message";
+    loading.textContent = "Thinking...";
+    chatMessages.appendChild(loading);
+
+    try {
+        const response = await fetch("/api/chat", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                message: message
+            })
+        });
+
+        const data = await response.json();
+
+        loading.textContent = data.reply || "Sorry, I couldn't answer.";
+
+    } catch (error) {
+        console.error(error);
+        loading.textContent = "Chatbot is currently unavailable.";
+    }
+
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+}
+
+sendChat.addEventListener("click", sendMessage);
+
+chatInput.addEventListener("keydown", function(event) {
+    if (event.key === "Enter") {
+        sendMessage();
+    }
+});
