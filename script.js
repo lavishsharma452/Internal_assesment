@@ -8,35 +8,35 @@ const projects = [
         description:
             "A simple application for managing and organizing books to read.",
         technologies: "HTML, CSS, JavaScript",
-        github: "#"
+        github: "https://github.com/lavishsharma452/Internal_assesment/tree/936e844e0af2fa19e9295e6eaad13b6033683895/book-reading-list"
     },
     {
         title: "Bug Fixing",
         description:
             "A project focused on identifying, debugging, and fixing programming issues.",
         technologies: "Programming, Debugging",
-        github: "#"
+        github: "https://github.com/lavishsharma452/Internal_assesment/tree/936e844e0af2fa19e9295e6eaad13b6033683895/bug-fixing"
     },
     {
         title: "Messy Python",
         description:
             "A collection of Python practice work focused on improving code structure and programming logic.",
         technologies: "Python",
-        github: "#"
+        github: "https://github.com/lavishsharma452/Internal_assesment/tree/936e844e0af2fa19e9295e6eaad13b6033683895/messy-python"
     },
     {
         title: "Python Program",
         description:
             "A Python programming project created to practice programming concepts and problem solving.",
         technologies: "Python",
-        github: "#"
+        github: "https://github.com/lavishsharma452/Internal_assesment/tree/936e844e0af2fa19e9295e6eaad13b6033683895/Python%20program"
     },
     {
         title: "Quiz Application",
         description:
             "An interactive quiz application that allows users to answer questions and test their knowledge.",
         technologies: "HTML, CSS, JavaScript",
-        github: "#"
+        github: "https://github.com/lavishsharma452/Internal_assesment/tree/936e844e0af2fa19e9295e6eaad13b6033683895/Quiz"
     }
 ];
 
