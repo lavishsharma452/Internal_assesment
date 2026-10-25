@@ -1,124 +1,124 @@
 // ===============================
-// AI PORTFOLIO CHATBOT
+// PROJECTS
 // ===============================
 
-function getBotResponse(message) {
-  const text = message.toLowerCase().trim();
+const projects = [
+    {
+        title: "Book Reading List",
+        description:
+            "A simple application for managing and organizing books to read.",
+        technologies: "HTML, CSS, JavaScript",
+        github: "#"
+    },
+    {
+        title: "Bug Fixing",
+        description:
+            "A project focused on identifying, debugging, and fixing programming issues.",
+        technologies: "Programming, Debugging",
+        github: "#"
+    },
+    {
+        title: "Messy Python",
+        description:
+            "A collection of Python practice work focused on improving code structure and programming logic.",
+        technologies: "Python",
+        github: "#"
+    },
+    {
+        title: "Python Program",
+        description:
+            "A Python programming project created to practice programming concepts and problem solving.",
+        technologies: "Python",
+        github: "#"
+    },
+    {
+        title: "Quiz Application",
+        description:
+            "An interactive quiz application that allows users to answer questions and test their knowledge.",
+        technologies: "HTML, CSS, JavaScript",
+        github: "#"
+    }
+];
 
-  // Greeting
-  if (
-      text.includes("hello") ||
-      text.includes("hi") ||
-      text.includes("hey")
-  ) {
-      return "Hello! I'm Lavish's portfolio assistant. You can ask me about his skills, projects, education, Python, AI, or portfolio.";
-  }
 
-  // Skills
-  if (
-      text.includes("skill") ||
-      text.includes("skills") ||
-      text.includes("technology") ||
-      text.includes("technologies")
-  ) {
-      return "Lavish is developing skills in Python, JavaScript, Machine Learning, Data Analysis, Artificial Intelligence, and core programming concepts.";
-  }
+// ===============================
+// DISPLAY PROJECTS
+// ===============================
 
-  // Projects
-  if (
-      text.includes("project") ||
-      text.includes("projects")
-  ) {
-      return "Lavish has worked on projects including an Interactive Quiz Application, Book Reading List Application, Python practice projects, and bug-fixing projects.";
-  }
+const projectGrid = document.getElementById("projectGrid");
+const projectSearch = document.getElementById("projectSearch");
+const emptyMsg = document.getElementById("emptyMsg");
 
-  // Education
-  if (
-      text.includes("education") ||
-      text.includes("college") ||
-      text.includes("degree")
-  ) {
-      return "Lavish is pursuing a B.Tech in Artificial Intelligence and Data Science.";
-  }
+function displayProjects(projectList) {
 
-  // Python
-  if (
-      text.includes("python")
-  ) {
-      return "Lavish uses Python for programming practice, data analysis, and learning Artificial Intelligence and Machine Learning concepts.";
-  }
+    if (!projectGrid) return;
 
-  // AI
-  if (
-      text.includes("ai") ||
-      text.includes("artificial intelligence") ||
-      text.includes("machine learning")
-  ) {
-      return "Lavish is interested in Artificial Intelligence and Machine Learning, especially using technology and data to solve real-world problems.";
-  }
+    projectGrid.innerHTML = "";
 
-  // Portfolio
-  if (
-      text.includes("portfolio") ||
-      text.includes("about you") ||
-      text.includes("about lavish")
-  ) {
-      return "This is Lavish Sharma's personal portfolio, showcasing his education, skills, projects, and interests in Artificial Intelligence and Data Science.";
-  }
+    if (projectList.length === 0) {
+        if (emptyMsg) {
+            emptyMsg.hidden = false;
+        }
+        return;
+    }
 
-  // Contact
-  if (
-      text.includes("contact") ||
-      text.includes("email") ||
-      text.includes("reach")
-  ) {
-      return "You can use the Contact section of the portfolio to connect with Lavish.";
-  }
+    if (emptyMsg) {
+        emptyMsg.hidden = true;
+    }
 
-  // Default answer
-  return "I can help you with information about Lavish's skills, projects, education, Python experience, AI interests, and portfolio. Try asking about his projects or skills.";
+    projectList.forEach(project => {
+
+        const card = document.createElement("article");
+        card.className = "project-card";
+
+        card.innerHTML = `
+            <h3>${project.title}</h3>
+
+            <p>${project.description}</p>
+
+            <p class="project-tech">
+                <strong>Technologies:</strong>
+                ${project.technologies}
+            </p>
+
+            <a
+                href="${project.github}"
+                class="project-link"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                GitHub
+            </a>
+        `;
+
+        projectGrid.appendChild(card);
+    });
 }
 
 
 // ===============================
-// SEND MESSAGE
+// PROJECT SEARCH
 // ===============================
 
-async function sendMessage() {
-  const message = chatInput.value.trim();
+if (projectSearch) {
 
-  if (!message) return;
+    projectSearch.addEventListener("input", function () {
 
-  // Show user's message
-  chatMessages.innerHTML += `
-      <div class="user-message">${message}</div>
-  `;
+        const searchText = this.value.toLowerCase().trim();
 
-  // Clear input
-  chatInput.value = "";
+        const filteredProjects = projects.filter(project =>
+            project.title.toLowerCase().includes(searchText) ||
+            project.description.toLowerCase().includes(searchText) ||
+            project.technologies.toLowerCase().includes(searchText)
+        );
 
-  // Show temporary response
-  const loading = document.createElement("div");
-  loading.className = "bot-message";
-  loading.textContent = "Thinking...";
-  chatMessages.appendChild(loading);
-
-  // Small delay to make chatbot feel natural
-  setTimeout(() => {
-      const reply = getBotResponse(message);
-
-      // Remove "Thinking..."
-      loading.remove();
-
-      // Show bot response
-      const botMessage = document.createElement("div");
-      botMessage.className = "bot-message";
-      botMessage.textContent = reply;
-
-      chatMessages.appendChild(botMessage);
-
-      // Scroll to latest message
-      chatMessages.scrollTop = chatMessages.scrollHeight;
-
-  }, 500);
+        displayProjects(filteredProjects);
+    });
 }
+
+
+// ===============================
+// INITIAL DISPLAY
+// ===============================
+
+displayProjects(projects);
