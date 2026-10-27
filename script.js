@@ -115,10 +115,57 @@ if (projectSearch) {
         displayProjects(filteredProjects);
     });
 }
-
-
-// ===============================
+// ==========================
 // INITIAL DISPLAY
-// ===============================
+// ==========================
 
 displayProjects(projects);
+
+
+// ==========================
+// DARK / LIGHT MODE
+// ==========================
+
+const themeBtn = document.getElementById("themeBtn");
+
+// Check saved theme
+const savedTheme = localStorage.getItem("theme");
+
+if (savedTheme === "dark") {
+    document.documentElement.classList.add("dark");
+
+    if (themeBtn) {
+        themeBtn.textContent = "Light Mode";
+        themeBtn.setAttribute("aria-pressed", "true");
+    }
+}
+
+
+// Toggle dark/light mode
+if (themeBtn) {
+
+    themeBtn.addEventListener("click", () => {
+
+        document.documentElement.classList.toggle("dark");
+
+        const isDark =
+            document.documentElement.classList.contains("dark");
+
+        if (isDark) {
+
+            themeBtn.textContent = "Light Mode";
+            themeBtn.setAttribute("aria-pressed", "true");
+
+            localStorage.setItem("theme", "dark");
+
+        } else {
+
+            themeBtn.textContent = "Dark Mode";
+            themeBtn.setAttribute("aria-pressed", "false");
+
+            localStorage.setItem("theme", "light");
+        }
+
+    });
+
+}

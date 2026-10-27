@@ -385,3 +385,69 @@ html.dark .placeholder {
   border-radius: 10px;
   cursor: pointer;
 }
+/* =========================================
+   DARK MODE
+========================================= */
+
+html.dark body {
+  background: #0d1117;
+  color: #f1f5f9;
+}
+
+html.dark .navbar {
+  background: #111827;
+  color: #f1f5f9;
+}
+
+html.dark .navbar a {
+  color: #f1f5f9;
+}
+
+html.dark .section {
+  background: #0d1117;
+}
+
+html.dark .section.alt {
+  background: #111827;
+}
+
+html.dark .project-card {
+  background: #1e293b;
+  color: #f1f5f9;
+}
+
+html.dark .project-card h3,
+html.dark .project-card p {
+  color: #f1f5f9;
+}
+
+html.dark .search-box {
+  background: #1e293b;
+  color: #ffffff;
+  border-color: #475569;
+}
+
+html.dark .chatbot-section {
+  background: #111827;
+  color: #f1f5f9;
+}
+
+html.dark .chat-messages {
+  background: #0f172a;
+}
+
+html.dark #chatInput {
+  background: #1e293b;
+  color: #ffffff;
+  border-color: #475569;
+}
+
+html.dark .footer {
+  background: #020617;
+  color: #f1f5f9;
+}
+
+html.dark .theme-btn {
+  background: #f1f5f9;
+  color: #111827;
+}
